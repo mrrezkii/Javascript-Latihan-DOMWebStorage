@@ -33,6 +33,7 @@ function makeBookhelf(title, author, year, isComplete){
     const containerStatus = document.createElement("action")
     containerStatus.classList.add("action")
     containerStatus.append(buttonGreen, buttonRed)
+    container.append(containerStatus)
 
     return container
 

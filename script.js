@@ -16,6 +16,6 @@ document.addEventListener("ondatasaved", () => {
     console.log("Data berhasil di simpan.");
 });
 
-// document.addEventListener("ondataloaded", () => {
-//     refreshDataFromTodos();
-// });
+document.addEventListener("ondataloaded", () => {
+    refreshDataFromBookshelfs();
+});
