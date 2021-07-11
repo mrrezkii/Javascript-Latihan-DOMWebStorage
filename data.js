@@ -10,7 +10,7 @@ const STORAGE_KEY = "BOOKSHELF_APPS"
   }
 */
 
-let bookshelf = []
+let bookshelfs = []
 
 
 function isStorageExist() {
@@ -22,7 +22,7 @@ function isStorageExist() {
 }
 
 function saveData(){
-    const parsed = JSON.stringify(bookshelf)
+    const parsed = JSON.stringify(bookshelfs)
     localStorage.setItem(STORAGE_KEY, parsed)
     document.dispatchEvent(new Event("ondatasaved"))
 }
@@ -33,7 +33,7 @@ function loadDataFromStorage() {
     let data = JSON.parse(serializedData)
     
     if(data !== null)
-        bookshelf = data
+        bookshelfs = data
 
     document.dispatchEvent(new Event("ondataloaded"))
 }
@@ -55,7 +55,7 @@ function composeTodoObject(title, author, year, isCompleted) {
 }
 
 function findBook(id){
-    for (book of bookshelf){
+    for (let book of bookshelfs){
         if(book.id === id){
             return book
         }
@@ -66,7 +66,7 @@ function findBook(id){
 
 function findBookIndex(id){
     let index = 0 
-    for (book of bookshelf){
+    for (let book of bookshelfs){
         if(book.id === id){
             return index
         }
