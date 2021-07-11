@@ -71,14 +71,15 @@ function createButtonRemove(){
     })
 }
 
+
 function createButtonDone(isComplete){
      if(isComplete){
         return createButton("green", "Belum selesai dibaca", function(event){
-            
+            moveToTodo(event.target.parentElement.parentElement)
         })
     } else {
         return createButton("green", "Selesai dibaca", function(event){
-            
+            moveToDone(event.target.parentElement.parentElement)
         })
     }
 }
@@ -102,5 +103,41 @@ function removeBook(taskElement){
     bookshelfs.splice(bookPosition, 1)
 
     taskElement.remove()
+    updateDataToStorage()
+}
+
+function moveToDone(taskElement){
+    const complateBookshelfList = document.getElementById(COMPLETED_LIST_BOOKSHELF_ID)
+    const bookTitle = document.getElementById("inputBookTitle").value
+    const bookAuthor = document.getElementById("inputBookAuthor").value
+    const bookYear = document.getElementById("inputBookYear").value
+
+    const newBookshelf = makeBookhelf(bookTitle, bookAuthor, bookYear, true)
+
+    const book = findBook(taskElement[BOOKSHELF_ITEMID])
+    book.isCompleted = true 
+    newBookshelf[BOOKSHELF_ITEMID] = book.id 
+
+    complateBookshelfList.append(newBookshelf)
+    taskElement.remove()
+
+    updateDataToStorage()
+}
+
+function moveToTodo(taskElement){
+    const unComplateBookshelfList = document.getElementById(UNCOMPLETED_LIST_BOOKSHELF_ID)
+    const bookTitle = document.getElementById("inputBookTitle").value
+    const bookAuthor = document.getElementById("inputBookAuthor").value
+    const bookYear = document.getElementById("inputBookYear").value
+
+    const newBookshelf = makeBookhelf(bookTitle, bookAuthor, bookYear, false)
+
+    const book = findBook(taskElement[BOOKSHELF_ITEMID])
+    book.isCompleted = false 
+    newBookshelf[BOOKSHELF_ITEMID] = book.id 
+
+    unComplateBookshelfList.append(newBookshelf)
+    taskElement.remove()
+
     updateDataToStorage()
 }
