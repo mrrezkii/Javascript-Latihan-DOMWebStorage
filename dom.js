@@ -16,24 +16,28 @@ function makeBookhelf(title, author, year, isComplete){
     container.classList.add("book_item")
     container.append(textTitle, textAuthor, textYear)
 
-    const buttonGreen = document.createElement("button")
-    buttonGreen.classList.add("green")
+    // const buttonGreen = document.createElement("button")
+    // buttonGreen.classList.add("green")
 
-    if(isComplete){
-        buttonGreen.innerText = "Belum selesai dibaca"
-    } else {
-        buttonGreen.innerText = "Selesai dibaca"
-    }
+    // if(isComplete){
+    //     buttonGreen.innerText = "Belum selesai dibaca"
+    // } else {
+    //     buttonGreen.innerText = "Selesai dibaca"
+    // }
 
-    const buttonRed = document.createElement("button")
-    buttonRed.classList.add("red")
-    buttonRed.innerText = "Hapus buku"
+    // const buttonRed = document.createElement("button")
+    // buttonRed.classList.add("red")
+    // buttonRed.innerText = "Hapus buku"
 
 
     const containerStatus = document.createElement("action")
     containerStatus.classList.add("action")
-    containerStatus.append(buttonGreen, buttonRed)
+    // containerStatus.append(buttonGreen, buttonRed)
+    // container.append(containerStatus)
+    containerStatus.append(createButtonRemove())
+
     container.append(containerStatus)
+
 
     return container
 
@@ -78,4 +82,32 @@ function refreshDataFromBookshelfs(){
             unComplateBookshelfList.append(newBook)
         }
     }
+}
+
+function createButtonRemove(){
+    return createButton("red", "Hapus buku", function(event){
+        removeBook(event.target.parentElement.parentElement)
+    })
+}
+
+function createButton(buttonTypeClass, buttonValue, eventListener) {
+    const button = document.createElement("button")
+    button.classList.add(buttonTypeClass)
+    button.innerHTML = buttonValue
+    button.addEventListener("click", function (event) {
+        eventListener(event)
+        event.stopPropagation()
+    })
+    return button
+}
+
+
+function removeBook(taskElement){
+    const bookPosition = findBookIndex(taskElement[BOOKSHELF_ITEMID])
+    console.log(bookPosition)
+    console.log(bookPosition)
+    bookshelfs.splice(bookPosition, 1)
+
+    taskElement.remove()
+    updateDataToStorage()
 }
