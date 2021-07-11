@@ -16,31 +16,12 @@ function makeBookhelf(title, author, year, isComplete){
     container.classList.add("book_item")
     container.append(textTitle, textAuthor, textYear)
 
-    // const buttonGreen = document.createElement("button")
-    // buttonGreen.classList.add("green")
-
-    // if(isComplete){
-    //     buttonGreen.innerText = "Belum selesai dibaca"
-    // } else {
-    //     buttonGreen.innerText = "Selesai dibaca"
-    // }
-
-    // const buttonRed = document.createElement("button")
-    // buttonRed.classList.add("red")
-    // buttonRed.innerText = "Hapus buku"
-
-
     const containerStatus = document.createElement("action")
     containerStatus.classList.add("action")
-    // containerStatus.append(buttonGreen, buttonRed)
-    // container.append(containerStatus)
-    containerStatus.append(createButtonRemove())
-
+    containerStatus.append(createButtonDone(isComplete), createButtonRemove())
     container.append(containerStatus)
 
-
     return container
-
 }
 
 
@@ -88,6 +69,18 @@ function createButtonRemove(){
     return createButton("red", "Hapus buku", function(event){
         removeBook(event.target.parentElement.parentElement)
     })
+}
+
+function createButtonDone(isComplete){
+     if(isComplete){
+        return createButton("green", "Belum selesai dibaca", function(event){
+            
+        })
+    } else {
+        return createButton("green", "Selesai dibaca", function(event){
+            
+        })
+    }
 }
 
 function createButton(buttonTypeClass, buttonValue, eventListener) {
