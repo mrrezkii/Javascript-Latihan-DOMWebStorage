@@ -62,3 +62,19 @@ function addBookshelf(){
     
     updateDataToStorage();
 }
+
+function refreshDataFromBookshelfs(){
+    const unComplateBookshelfList = document.getElementById(UNCOMPLETED_LIST_BOOKSHELF_ID)
+    const complateBookshelfList = document.getElementById(COMPLETED_LIST_BOOKSHELF_ID)
+
+    for (let book of bookshelfs){
+        const newBook = makeBookhelf(book.title, book.author, book.year, book.isCompleted)
+        newBook[BOOKSHELF_ITEMID] = book.id
+
+        if(book.isCompleted){
+            complateBookshelfList.append(newBook)
+        } else {
+            unComplateBookshelfList.append(newBook)
+        }
+    }
+}
