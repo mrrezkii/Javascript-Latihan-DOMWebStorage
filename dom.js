@@ -10,6 +10,7 @@ function makeBookhelf(title, author, year, isComplete){
     textAuthor.innerText = author
 
     const textYear = document.createElement("p")
+    textYear.classList.add("p-year")
     textYear.innerText = year
 
     const container = document.createElement("article")
@@ -108,9 +109,9 @@ function removeBook(taskElement){
 
 function moveToDone(taskElement){
     const complateBookshelfList = document.getElementById(COMPLETED_LIST_BOOKSHELF_ID)
-    const bookTitle = document.getElementById("inputBookTitle").value
-    const bookAuthor = document.getElementById("inputBookAuthor").value
-    const bookYear = document.getElementById("inputBookYear").value
+    const bookTitle = taskElement.querySelector(".book_item h3").innerText
+    const bookAuthor = taskElement.querySelector(".book_item p").innerText
+    const bookYear = taskElement.querySelector(".p-year").innerText
 
     const newBookshelf = makeBookhelf(bookTitle, bookAuthor, bookYear, true)
 
@@ -126,9 +127,9 @@ function moveToDone(taskElement){
 
 function moveToTodo(taskElement){
     const unComplateBookshelfList = document.getElementById(UNCOMPLETED_LIST_BOOKSHELF_ID)
-    const bookTitle = document.getElementById("inputBookTitle").value
-    const bookAuthor = document.getElementById("inputBookAuthor").value
-    const bookYear = document.getElementById("inputBookYear").value
+    const bookTitle = taskElement.querySelector(".book_item h3").innerText
+    const bookAuthor = taskElement.querySelector(".book_item p").innerText
+    const bookYear = taskElement.querySelector(".p-year").innerText
 
     const newBookshelf = makeBookhelf(bookTitle, bookAuthor, bookYear, false)
 
