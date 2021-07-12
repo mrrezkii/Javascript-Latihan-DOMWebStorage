@@ -7,11 +7,11 @@ function makeBookhelf(title, author, year, isComplete){
     textTitle.innerText = title
 
     const textAuthor = document.createElement("p")
-    textAuthor.innerText = author
+    textAuthor.innerText = ("Penulis : " + author)
 
     const textYear = document.createElement("p")
     textYear.classList.add("p-year")
-    textYear.innerText = year
+    textYear.innerText = ("Tahun : " + year)
 
     const container = document.createElement("article")
     container.classList.add("book_item")

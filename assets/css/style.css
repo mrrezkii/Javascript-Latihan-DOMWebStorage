@@ -139,11 +139,16 @@ input:focus{
     padding: 0px 10px 0 10px;   
 }
 
+.bookshelf{
+    width: 60%;
+    margin: auto;
+}
+
 .book_shelf {
     margin: 16px 0 0 0;
-    border: 1px solid #212121;
     padding: 16px;
     border-radius: 10px;
+    margin: auto;
 }
 
 .book_shelf > h2 {
@@ -156,13 +161,17 @@ input:focus{
 
 .book_shelf > .book_list > .book_item {
     padding: 8px 16px 16px 16px;
-    border: 1px solid #212121;
+    border: 1px solid #9575CD;
+    width: 80%;
     border-radius: 5px;
     margin: 10px 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .book_shelf > .book_list > .book_item > h3, p {
     margin: 8px 0;
+    color: #424242;
 }
 
 .book_shelf > .book_list > .book_item > .action > button {
@@ -174,11 +183,12 @@ input:focus{
 }
 
 .book_shelf > .book_list > .book_item > .action > .green {
-    background-color: darkgreen;
+    background-color: #388E3C;
     color: white;
 }
 
 .book_shelf > .book_list > .book_item > .action > .red {
-    background-color: darkred;
+    background-color: #F44336;
     color: white;
+    float: right;
 }
