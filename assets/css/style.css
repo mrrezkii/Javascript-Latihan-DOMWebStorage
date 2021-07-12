@@ -19,7 +19,7 @@ input, button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #3949AB;
+    background-color: #9575CD;
     color: white;
 }
 
@@ -40,7 +40,7 @@ main {
 
 .input_section > h2 {
     text-align: center;
-    color: #3949AB;
+    color: #9575CD;
 }
 
 .input_section > form {
@@ -53,7 +53,7 @@ main {
 }
 
 .input_section > form > button {
-    background-color: #3949AB;
+    background-color: #9575CD;
     color: white;
     border: 0;
     border-radius: 5px;
@@ -62,6 +62,7 @@ main {
     margin: auto;
     padding: 8px;
     cursor: pointer;
+    text-align: center;
 }
 
 .input_section > form > button > span {
@@ -72,7 +73,6 @@ main {
     display: block;
     width: 100%;
     padding: 8px;
-    border-radius: 5px;
     background: transparent;
     border: none;
     border-bottom: 1px solid #CCC;
@@ -84,7 +84,7 @@ input:focus{
 }
 
 .input_section > form > .input > label {
-    color: #3949AB;
+    color: #9575CD;
     font-weight: bold;
 }
 
@@ -95,7 +95,7 @@ input:focus{
 }
 
 .input_section > form > .input_inline > label {
-    color: #3949AB;
+    color: #9575CD;
     font-weight: bold;
     margin-right: 10px;
 }
@@ -106,38 +106,37 @@ input:focus{
     flex-direction: column;
     align-items: center;
     padding: 16px;
-    border: 1px solid #212121;
     border-radius: 10px;
 }
 
 .search_section > h2 {
-    color: #3949AB;
+    color: #9575CD;
 }
 
 .search_section > form {
     padding: 16px;
-    width: 100%;
     display: grid;
     grid-template-columns: auto 1fr 0.5fr;
     grid-gap: 10px;
 }
 
-.search_section > form > label {
-    display: flex;
-    align-items: center;
-}
-
 .search_section > form > input {
     padding: 5px;
-    border-radius: 5px;
+    margin-right: 300px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #CCC;
+    color: #555;
+    width: 100%;
 }
 
 .search_section > form > button {
-    background-color: #3949AB;
+    background-color: #9575CD;
     color: white;
     border: 0;
     border-radius: 5px;
     cursor: pointer;
+    padding: 0px 10px 0 10px;   
 }
 
 .book_shelf {
@@ -148,7 +147,7 @@ input:focus{
 }
 
 .book_shelf > h2 {
-    color: #3949AB;
+    color: #9575CD;
 }
 
 .book_shelf > .book_list {
