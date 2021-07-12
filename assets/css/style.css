@@ -169,7 +169,16 @@ input:focus{
     margin-right: auto;
 }
 
-.book_shelf > .book_list > .book_item > h3, p {
+.book_list p::before{
+    content: "Penulis : ";
+    font-weight: bold;
+}
+
+.book_list .p-year::before{
+    content: "Tahun : ";
+}
+
+.book_shelf > .book_list > .book_item > h3, p, h4 {
     margin: 8px 0;
     color: #424242;
 }
