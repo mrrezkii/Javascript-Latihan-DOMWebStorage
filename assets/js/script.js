@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const submitForm = document.getElementById("inputBook")
     const findData = document.getElementById("searchBook")
 
-
     submitForm.addEventListener("submit", function (event) {
         event.preventDefault()
         addBookshelf()

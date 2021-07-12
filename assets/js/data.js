@@ -1,17 +1,6 @@
 const STORAGE_KEY = "BOOKSHELF_APPS"
 
-/*
-{
-    id: string | number,
-    title: string,
-    author: string,
-    year: number,
-    isComplete: boolean,
-  }
-*/
-
 let bookshelfs = []
-
 
 function isStorageExist() {
     if(typeof(Storage) === undefined){
@@ -42,7 +31,6 @@ function updateDataToStorage() {
     if(isStorageExist())
         saveData()
 }
-
 
 function composeTodoObject(title, author, year, isCompleted) {
     return {

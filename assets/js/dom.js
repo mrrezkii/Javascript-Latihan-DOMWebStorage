@@ -37,7 +37,6 @@ function addBookshelf(){
     const bookshelf = makeBookhelf(bookTitle, bookAuthor, bookYear, bookComplete)
     const bookshelfObject = composeTodoObject(bookTitle, bookAuthor, bookYear, bookComplete)
     
-
     bookshelf[BOOKSHELF_ITEMID] = bookshelfObject.id
     bookshelfs.push(bookshelfObject)
 
@@ -72,7 +71,6 @@ function createButtonRemove(){
     })
 }
 
-
 function createButtonDone(isComplete){
      if(isComplete){
         return createButton("green", "Belum selesai dibaca", function(event){
@@ -95,7 +93,6 @@ function createButton(buttonTypeClass, buttonValue, eventListener) {
     })
     return button
 }
-
 
 function removeBook(taskElement){
     const bookPosition = findBookIndex(taskElement[BOOKSHELF_ITEMID])
@@ -160,13 +157,11 @@ function findBookshelf(){
     const unComplateBookshelfList = document.getElementById(UNCOMPLETED_LIST_BOOKSHELF_ID)
     const bookTitle = document.getElementById("searchBookTitle").value
 
-
     if(bookTitle == null || bookTitle == ""){
         refreshDataFromBookshelfs()
     } else {
         removeElement()
     }
-
 
     for (let book of bookshelfs){
         const newBook = makeBookhelf(book.title, book.author, book.year, book.isCompleted)
@@ -184,5 +179,4 @@ function findBookshelf(){
             console.log(false)
         }  
     }
-
 }
