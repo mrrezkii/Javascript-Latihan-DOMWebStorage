@@ -1,6 +1,6 @@
-const UNCOMPLETED_LIST_BOOKSHELF_ID = "incompleteBookshelfList";
-const COMPLETED_LIST_BOOKSHELF_ID = "completeBookshelfList";
-const BOOKSHELF_ITEMID = "itemId";
+const UNCOMPLETED_LIST_BOOKSHELF_ID = "incompleteBookshelfList"
+const COMPLETED_LIST_BOOKSHELF_ID = "completeBookshelfList"
+const BOOKSHELF_ITEMID = "itemId"
 
 function makeBookhelf(title, author, year, isComplete){
     const textTitle = document.createElement("h3")
@@ -15,11 +15,13 @@ function makeBookhelf(title, author, year, isComplete){
 
     const container = document.createElement("article")
     container.classList.add("book_item")
+
     container.append(textTitle, textAuthor, textYear)
 
     const containerStatus = document.createElement("action")
     containerStatus.classList.add("action")
     containerStatus.append(createButtonDone(isComplete), createButtonRemove())
+
     container.append(containerStatus)
 
     return container
@@ -27,40 +29,41 @@ function makeBookhelf(title, author, year, isComplete){
 
 
 function addBookshelf(){
-    const unComplateBookshelfList = document.getElementById(UNCOMPLETED_LIST_BOOKSHELF_ID)
-    const complateBookshelfList = document.getElementById(COMPLETED_LIST_BOOKSHELF_ID)
+    const unCompletedBookshelfList = document.getElementById(UNCOMPLETED_LIST_BOOKSHELF_ID)
+    const completedBookshelfList = document.getElementById(COMPLETED_LIST_BOOKSHELF_ID)
+
     const bookTitle = document.getElementById("inputBookTitle").value
     const bookAuthor = document.getElementById("inputBookAuthor").value
     const bookYear = document.getElementById("inputBookYear").value
     const bookComplete = document.getElementById("inputBookIsComplete").checked
 
     const bookshelf = makeBookhelf(bookTitle, bookAuthor, bookYear, bookComplete)
-    const bookshelfObject = composeTodoObject(bookTitle, bookAuthor, bookYear, bookComplete)
+    const bookshelfObject = composeBookshelfObject(bookTitle, bookAuthor, bookYear, bookComplete)
     
     bookshelf[BOOKSHELF_ITEMID] = bookshelfObject.id
     bookshelfs.push(bookshelfObject)
 
     if(bookComplete){
-        complateBookshelfList.append(bookshelf)
+        completedBookshelfList.append(bookshelf)
     } else {
-        unComplateBookshelfList.append(bookshelf)
+        unCompletedBookshelfList.append(bookshelf)
     }
     
     updateDataToStorage();
 }
 
 function refreshDataFromBookshelfs(){
-    const unComplateBookshelfList = document.getElementById(UNCOMPLETED_LIST_BOOKSHELF_ID)
-    const complateBookshelfList = document.getElementById(COMPLETED_LIST_BOOKSHELF_ID)
+    const unCompletedBookshelfList = document.getElementById(UNCOMPLETED_LIST_BOOKSHELF_ID)
+    const completedBookshelfList = document.getElementById(COMPLETED_LIST_BOOKSHELF_ID)
 
     for (let book of bookshelfs){
         const newBook = makeBookhelf(book.title, book.author, book.year, book.isCompleted)
         newBook[BOOKSHELF_ITEMID] = book.id
 
         if(book.isCompleted){
-            complateBookshelfList.append(newBook)
+            completedBookshelfList.append(newBook)
         } else {
-            unComplateBookshelfList.append(newBook)
+            unCompletedBookshelfList.append(newBook)
         }
     }
 }
@@ -83,9 +86,9 @@ function createButtonDone(isComplete){
     }
 }
 
-function createButton(buttonTypeClass, buttonValue, eventListener) {
+function createButton(buttonClass, buttonValue, eventListener) {
     const button = document.createElement("button")
-    button.classList.add(buttonTypeClass)
+    button.classList.add(buttonClass)
     button.innerHTML = buttonValue
     button.addEventListener("click", function (event) {
         eventListener(event)
@@ -94,48 +97,46 @@ function createButton(buttonTypeClass, buttonValue, eventListener) {
     return button
 }
 
-function removeBook(taskElement){
-    const bookPosition = findBookIndex(taskElement[BOOKSHELF_ITEMID])
-    console.log(bookPosition)
-    console.log(bookPosition)
+function removeBook(element){
+    const bookPosition = findBookIndex(element[BOOKSHELF_ITEMID])
     bookshelfs.splice(bookPosition, 1)
 
-    taskElement.remove()
+    element.remove()
     updateDataToStorage()
 }
 
-function moveToDone(taskElement){
-    const complateBookshelfList = document.getElementById(COMPLETED_LIST_BOOKSHELF_ID)
-    const bookTitle = taskElement.querySelector(".book_item h3").innerText
-    const bookAuthor = taskElement.querySelector(".book_item p").innerText
-    const bookYear = taskElement.querySelector(".p-year").innerText
+function moveToDone(element){
+    const completedBookshelfList = document.getElementById(COMPLETED_LIST_BOOKSHELF_ID)
+    const bookTitle = element.querySelector(".book_item h3").innerText
+    const bookAuthor = element.querySelector(".book_item p").innerText
+    const bookYear = element.querySelector(".p-year").innerText
 
     const newBookshelf = makeBookhelf(bookTitle, bookAuthor, bookYear, true)
 
-    const book = findBook(taskElement[BOOKSHELF_ITEMID])
+    const book = findBook(element[BOOKSHELF_ITEMID])
     book.isCompleted = true 
     newBookshelf[BOOKSHELF_ITEMID] = book.id 
 
-    complateBookshelfList.append(newBookshelf)
-    taskElement.remove()
+    completedBookshelfList.append(newBookshelf)
+    element.remove()
 
     updateDataToStorage()
 }
 
-function moveToTodo(taskElement){
-    const unComplateBookshelfList = document.getElementById(UNCOMPLETED_LIST_BOOKSHELF_ID)
-    const bookTitle = taskElement.querySelector(".book_item h3").innerText
-    const bookAuthor = taskElement.querySelector(".book_item p").innerText
-    const bookYear = taskElement.querySelector(".p-year").innerText
+function moveToTodo(element){
+    const unCompletedBookshelfList = document.getElementById(UNCOMPLETED_LIST_BOOKSHELF_ID)
+    const bookTitle = element.querySelector(".book_item h3").innerText
+    const bookAuthor = element.querySelector(".book_item p").innerText
+    const bookYear = element.querySelector(".p-year").innerText
 
     const newBookshelf = makeBookhelf(bookTitle, bookAuthor, bookYear, false)
 
-    const book = findBook(taskElement[BOOKSHELF_ITEMID])
+    const book = findBook(element[BOOKSHELF_ITEMID])
     book.isCompleted = false 
     newBookshelf[BOOKSHELF_ITEMID] = book.id 
 
-    unComplateBookshelfList.append(newBookshelf)
-    taskElement.remove()
+    unCompletedBookshelfList.append(newBookshelf)
+    element.remove()
 
     updateDataToStorage()
 }
@@ -153,8 +154,8 @@ function removeElement(){
 }
 
 function findBookshelf(){
-    const complateBookshelfList = document.getElementById(COMPLETED_LIST_BOOKSHELF_ID)
-    const unComplateBookshelfList = document.getElementById(UNCOMPLETED_LIST_BOOKSHELF_ID)
+    const completedBookshelfList = document.getElementById(COMPLETED_LIST_BOOKSHELF_ID)
+    const unCompletedBookshelfList = document.getElementById(UNCOMPLETED_LIST_BOOKSHELF_ID)
     const bookTitle = document.getElementById("searchBookTitle").value
 
     if(bookTitle == null || bookTitle == ""){
@@ -170,11 +171,10 @@ function findBookshelf(){
         if(book.title.includes(bookTitle) && bookTitle !== ""){
         
             if(book.isCompleted){
-                complateBookshelfList.append(newBook)
+                completedBookshelfList.append(newBook)
             } else {
-                unComplateBookshelfList.append(newBook)
+                unCompletedBookshelfList.append(newBook)
             }
-            console.log(newBook)
         } else {
             console.log(false)
         }  

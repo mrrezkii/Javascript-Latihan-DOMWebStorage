@@ -4,13 +4,13 @@ let bookshelfs = []
 
 function isStorageExist() {
     if(typeof(Storage) === undefined){
-        alert("Browser kamu tidak mendukung local storage")
+        alert("Your password not supported")
         return false
     } 
-    return true;
+    return true
 }
 
-function saveData(){
+function postData(){
     const parsed = JSON.stringify(bookshelfs)
     localStorage.setItem(STORAGE_KEY, parsed)
     document.dispatchEvent(new Event("ondatasaved"))
@@ -29,10 +29,10 @@ function loadDataFromStorage() {
 
 function updateDataToStorage() {
     if(isStorageExist())
-        saveData()
+        postData()
 }
 
-function composeTodoObject(title, author, year, isCompleted) {
+function composeBookshelfObject(title, author, year, isCompleted) {
     return {
         id: +new Date(),
         title,
@@ -48,7 +48,6 @@ function findBook(id){
             return book
         }
     }
-
     return null
 }
 
@@ -61,6 +60,5 @@ function findBookIndex(id){
 
         index++
     }
-
     return -1
 }
