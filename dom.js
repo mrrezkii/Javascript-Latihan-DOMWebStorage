@@ -142,3 +142,47 @@ function moveToTodo(taskElement){
 
     updateDataToStorage()
 }
+
+function removeElement(){
+    const dataBookshelf = document.getElementsByTagName("article")
+
+    for (let i = dataBookshelf.length - 1; i >= 0; i--){
+        dataBookshelf[0].parentNode.removeChild(dataBookshelf[0])
+    }
+
+    console.log(dataBookshelf)
+
+    return dataBookshelf
+}
+
+function findBookshelf(){
+    const complateBookshelfList = document.getElementById(COMPLETED_LIST_BOOKSHELF_ID)
+    const unComplateBookshelfList = document.getElementById(UNCOMPLETED_LIST_BOOKSHELF_ID)
+    const bookTitle = document.getElementById("searchBookTitle").value
+
+
+    if(bookTitle == null || bookTitle == ""){
+        refreshDataFromBookshelfs()
+    } else {
+        removeElement()
+    }
+
+
+    for (let book of bookshelfs){
+        const newBook = makeBookhelf(book.title, book.author, book.year, book.isCompleted)
+        newBook[BOOKSHELF_ITEMID] = book.id
+
+        if(book.title.includes(bookTitle) && bookTitle !== ""){
+        
+            if(book.isCompleted){
+                complateBookshelfList.append(newBook)
+            } else {
+                unComplateBookshelfList.append(newBook)
+            }
+            console.log(newBook)
+        } else {
+            console.log(false)
+        }  
+    }
+
+}
