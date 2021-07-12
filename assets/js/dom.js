@@ -99,10 +99,12 @@ function createButton(buttonClass, buttonValue, eventListener) {
 
 function removeBook(element){
     const bookPosition = findBookIndex(element[BOOKSHELF_ITEMID])
-    bookshelfs.splice(bookPosition, 1)
-
-    element.remove()
-    updateDataToStorage()
+    let answer = window.confirm("Hapus buku ?")
+    if(answer){
+        bookshelfs.splice(bookPosition, 1)
+        element.remove()
+        updateDataToStorage()
+    }
 }
 
 function moveToDone(element){
